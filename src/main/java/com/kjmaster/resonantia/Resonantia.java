@@ -2,22 +2,19 @@ package com.kjmaster.resonantia;
 
 import com.kjmaster.resonantia.modules.resonantenergy.ResonantEnergyModule;
 import com.kjmaster.resonantia.modules.tuner.TunerModule;
+import com.kjmaster.resonantia.setup.*;
 import com.mojang.logging.LogUtils;
 import mcjty.lib.datagen.DataGen;
 import mcjty.lib.modules.Modules;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.attachment.AttachmentType;
-import net.neoforged.neoforge.attachment.LevelAttachmentsSavedData;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
-import com.kjmaster.resonantia.setup.*;
 
 import java.util.function.Supplier;
 
