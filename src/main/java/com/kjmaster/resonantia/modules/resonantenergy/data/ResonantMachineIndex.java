@@ -8,7 +8,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.*;
 
-public class TransmitterIndex {
+public class ResonantMachineIndex {
     private static final Map<DimensionAndChunk, Set<BlockPos>> INDEX = new HashMap<>();
 
     public static void add(ServerLevel level, BlockPos pos) {

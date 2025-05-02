@@ -3,7 +3,7 @@ package com.kjmaster.resonantia.modules.resonantenergy.blocks.transmitter;
 import com.kjmaster.resonantia.api.machine.IResonantMachine;
 import com.kjmaster.resonantia.api.machine.ResonantMachineRole;
 import com.kjmaster.resonantia.modules.resonantenergy.blocks.receiver.ResonantEnergyReceiverTileEntity;
-import com.kjmaster.resonantia.modules.resonantenergy.data.TransmitterIndex;
+import com.kjmaster.resonantia.modules.resonantenergy.data.ResonantMachineIndex;
 import com.kjmaster.resonantia.resonance.PacketLinkVisualization;
 import com.kjmaster.resonantia.setup.ResonantiaMessages;
 import com.kjmaster.resonantia.tileentity.ResonatingMachineTE;
@@ -110,24 +110,6 @@ public class ResonantEnergyTransmitterTileEntity extends ResonatingMachineTE {
             energyStorage.consumeEnergy(accepted);
             availableEnergy -= accepted;
             if (availableEnergy <= 0) break;
-        }
-    }
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        if (level == null) return;
-        if (!level.isClientSide) {
-            TransmitterIndex.add((ServerLevel) level, worldPosition);
-        }
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        if (level == null) return;
-        if (!level.isClientSide) {
-            TransmitterIndex.remove((ServerLevel) level, worldPosition);
         }
     }
 

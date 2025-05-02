@@ -5,6 +5,7 @@ import com.kjmaster.resonantia.api.frequency.IFrequency;
 import com.kjmaster.resonantia.api.machine.IResonantMachine;
 import com.kjmaster.resonantia.api.machine.ResonantMachineRole;
 import com.kjmaster.resonantia.modules.resonantenergy.blocks.transmitter.ResonantEnergyTransmitterTileEntity;
+import com.kjmaster.resonantia.modules.resonantenergy.data.ResonantMachineIndex;
 import com.kjmaster.resonantia.resonance.PacketLinkVisualization;
 import com.kjmaster.resonantia.resonance.PacketSyncEnabled;
 import com.kjmaster.resonantia.resonance.ResonanceNetworkSavedData;
@@ -172,6 +173,7 @@ public class ResonatingMachineTE extends ResonantiaTileEntity implements IResona
         if (!level.isClientSide) {
             wasEnabled = isMachineEnabled();
             ResonanceNetworkSavedData.get((ServerLevel) level).registerMachine(this.frequency);
+            ResonantMachineIndex.add((ServerLevel) level, getBlockPos());
         }
     }
 
@@ -182,6 +184,7 @@ public class ResonatingMachineTE extends ResonantiaTileEntity implements IResona
         if (!level.isClientSide) {
             ResonanceNetworkSavedData.get((ServerLevel) level).unregisterMachine(this.frequency);
             ResonantiaMessages.sendToPlayersTrackingChunk(PacketSyncEnabled.create(getBlockPos(), false), (ServerLevel) level, new ChunkPos(getBlockPos()));
+            ResonantMachineIndex.remove((ServerLevel) level, getBlockPos());
         }
     }
 

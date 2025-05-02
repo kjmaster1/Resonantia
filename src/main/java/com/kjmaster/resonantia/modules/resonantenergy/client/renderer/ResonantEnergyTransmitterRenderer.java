@@ -101,7 +101,7 @@ public class ResonantEnergyTransmitterRenderer implements BlockEntityRenderer<Re
         float beamLength = (float) start.distanceTo(end);
 
         float frequency = -2.0f;
-        float amplitude = 0.3f;
+        float amplitude = 0.1f;
 
         int segments = 40;
         int circlePoints = 12;
