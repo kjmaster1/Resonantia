@@ -181,6 +181,7 @@ public class ResonatingMachineTE extends ResonantiaTileEntity implements IResona
         if (level == null) return;
         if (!level.isClientSide) {
             ResonanceNetworkSavedData.get((ServerLevel) level).unregisterMachine(this.frequency);
+            ResonantiaMessages.sendToPlayersTrackingChunk(PacketSyncEnabled.create(getBlockPos(), false), (ServerLevel) level, new ChunkPos(getBlockPos()));
         }
     }
 

@@ -3,6 +3,7 @@ package com.kjmaster.resonantia.modules.resonantenergy.events;
 import com.kjmaster.resonantia.modules.resonantenergy.blocks.transmitter.ResonantEnergyTransmitterTileEntity;
 import com.kjmaster.resonantia.modules.resonantenergy.data.TransmitterIndex;
 import com.kjmaster.resonantia.resonance.PacketLinkVisualization;
+import com.kjmaster.resonantia.resonance.PacketSyncEnabled;
 import com.kjmaster.resonantia.setup.ResonantiaMessages;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -32,6 +33,7 @@ public class TransmitterChunkWatch {
             } else {
                 ResonantiaMessages.sendToPlayer(PacketLinkVisualization.create(te.getBlockPos(), List.of()), player);
             }
+            ResonantiaMessages.sendToPlayersTrackingChunk(PacketSyncEnabled.create(te.getBlockPos(), te.isMachineEnabled()), event.getLevel(), new ChunkPos(te.getBlockPos()));
         }
     }
 

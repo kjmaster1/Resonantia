@@ -2,19 +2,23 @@ package com.kjmaster.resonantia.resonance.client;
 
 import net.minecraft.core.GlobalPos;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ClientEnabledCache {
 
-    private static final Map<GlobalPos, Boolean> enabledCache = new HashMap<>();
+    private static final Set<GlobalPos> enabledSet = new HashSet<>();
 
     public static void setEnabled(GlobalPos source, boolean enabled) {
-        enabledCache.put(source, enabled);
+        if (enabled) {
+            enabledSet.add(source);
+        } else {
+            enabledSet.remove(source);
+        }
     }
 
-    public static Boolean getEnabled(GlobalPos source) {
-        return enabledCache.getOrDefault(source, Boolean.FALSE);
+    public static boolean getEnabled(GlobalPos source) {
+        return enabledSet.contains(source);
     }
 }
 
