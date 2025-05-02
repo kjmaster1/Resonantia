@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_components",
+              "include": [
+                "mcjtylib:item_energy",
+                "mcjtylib:item_inventory",
+                "mcjtylib:infusable",
+                "mcjtylib:base_be_data",
+                "resonantia:frequency"
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "resonantia:simple_resonant_energy_transmitter"
+        }
+      ],
+      "name": "simple_resonant_energy_transmitter",
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "resonantia:blocks/simple_resonant_energy_transmitter"
+}

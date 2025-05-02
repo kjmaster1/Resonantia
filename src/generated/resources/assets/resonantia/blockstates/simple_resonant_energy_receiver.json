@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "resonantia:block/simple_resonant_energy_receiver"
+    }
+  }
+}
