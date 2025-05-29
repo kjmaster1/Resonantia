@@ -1,6 +1,5 @@
 package com.kjmaster.resonantia.modules.resonantenergy.blocks.transmitter;
 
-import com.kjmaster.resonantia.api.frequency.DefaultFrequency;
 import com.kjmaster.resonantia.modules.resonantenergy.ResonantEnergyModule;
 import mcjty.lib.blocks.BaseBlock;
 import mcjty.lib.blocks.RotationType;
@@ -13,14 +12,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import static com.kjmaster.resonantia.modules.resonantenergy.ResonantEnergyModule.SLAB;
 import static mcjty.lib.builder.TooltipBuilder.*;
 
 public class SimpleResonantEnergyTransmitterTE extends ResonantEnergyTransmitterTileEntity {
 
     public SimpleResonantEnergyTransmitterTE(BlockPos pos, BlockState state) {
         super(ResonantEnergyModule.SIMPLE_RESONANT_ENERGY_TRANSMITTER.be().get(), pos, state);
-        this.energyStorage = new GenericEnergyStorage(this, true, 8000, 500);
-        this.frequency = new DefaultFrequency(this);
+    }
+
+    @Override
+    protected GenericEnergyStorage getEnergyStorage() {
+        return new GenericEnergyStorage(this, true, 8000, 500);
     }
 
     public static BaseBlock createBlock() {

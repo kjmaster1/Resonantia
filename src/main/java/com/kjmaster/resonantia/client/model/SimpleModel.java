@@ -1,0 +1,64 @@
+package com.kjmaster.resonantia.client.model;
+
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonObject;
+import net.minecraft.client.renderer.block.model.ItemOverrides;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelBaker;
+import net.minecraft.client.resources.model.ModelState;
+import net.neoforged.neoforge.client.model.IModelBuilder;
+import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
+import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
+import net.neoforged.neoforge.client.model.geometry.SimpleUnbakedGeometry;
+
+import java.util.function.Function;
+
+public class SimpleModel extends SimpleUnbakedGeometry<SimpleModel> {
+
+    private final ElementsModelWrapped model;
+    private final SimpleModel.IFactory<BakedModel> factory;
+
+    public SimpleModel(ElementsModelWrapped model, SimpleModel.IFactory<BakedModel> factory) {
+
+        this.model = model;
+        this.factory = factory;
+    }
+
+    @Override
+    public BakedModel bake(IGeometryBakingContext owner, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelTransform, ItemOverrides overrides) {
+
+        return factory.create(model.bake(owner, bakery, spriteGetter, modelTransform, overrides));
+    }
+
+    @Override
+    public void addQuads(IGeometryBakingContext owner, IModelBuilder<?> modelBuilder, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelTransform) {
+
+        model.addQuads(owner, modelBuilder, bakery, spriteGetter, modelTransform);
+    }
+
+    public interface IFactory<T extends BakedModel> {
+
+        T create(BakedModel originalModel);
+
+    }
+
+    // region LOADER
+    public static class Loader implements IGeometryLoader<SimpleModel> {
+
+        private final SimpleModel.IFactory<BakedModel> factory;
+
+        public Loader(SimpleModel.IFactory<BakedModel> factory) {
+
+            this.factory = factory;
+        }
+
+        @Override
+        public SimpleModel read(JsonObject jsonObject, JsonDeserializationContext deserializationContext) {
+            return new SimpleModel(ElementsModelWrapped.Loader.INSTANCE.read(jsonObject, deserializationContext), factory);
+        }
+
+    }
+    // endregion
+}

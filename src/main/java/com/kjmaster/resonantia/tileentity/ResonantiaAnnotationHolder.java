@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class ResonantiaAnnotationHolder {
@@ -25,9 +26,9 @@ public class ResonantiaAnnotationHolder {
     }
 
     public static record CapHolder<B, C>(BlockCapability<B, C> capability,
-                                         Function<? super ResonantiaTileEntity, Object> function,
+                                         BiFunction<? super ResonantiaTileEntity, Object, Object> function,
                                          DeferredBlock<?> block) {
-        public CapHolder(BlockCapability<B, C> capability, Function<? super ResonantiaTileEntity, Object> function, DeferredBlock<?> block) {
+        public CapHolder(BlockCapability<B, C> capability, BiFunction<? super ResonantiaTileEntity, Object, Object> function, DeferredBlock<?> block) {
             this.capability = capability;
             this.function = function;
             this.block = block;
@@ -37,7 +38,7 @@ public class ResonantiaAnnotationHolder {
             return this.capability;
         }
 
-        public Function<? super ResonantiaTileEntity, Object> function() {
+        public BiFunction<? super ResonantiaTileEntity, Object, Object> function() {
             return this.function;
         }
 

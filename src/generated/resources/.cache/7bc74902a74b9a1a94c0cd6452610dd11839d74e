@@ -1,3 +1,17 @@
-// 1.21.1	2025-04-30T18:55:52.589245	Tags for minecraft:block mod id resonantia
-a07e86d7fec85e6199393eea0d5047d8d997a139 data/minecraft/tags/block/mineable/pickaxe.json
-a07e86d7fec85e6199393eea0d5047d8d997a139 data/minecraft/tags/block/needs_stone_tool.json
+// 1.21.1	2025-05-21T15:40:21.3259176	Tags for minecraft:block mod id resonantia
+7e6328f9d580db548453ae9298a21fc686ef2ea2 data/c/tags/block/ores.json
+35a02a47ff8db8834359c6a0834f77e679e1be1d data/c/tags/block/ores/keralium.json
+95911f179be122940efcd8bda06eb5c226313c5f data/c/tags/block/ores/lumenite.json
+84266d0d15129d0ad80bfb47c3bd73d5abe8d255 data/c/tags/block/ores/oblivium.json
+11b3c516dd161d2150bc1dcc185eac0bc5feb232 data/c/tags/block/ores/resonant_quartz.json
+e795c625fee1b0f8293667cb1587278daf78bdd6 data/c/tags/block/ores/thermonite.json
+cf959c2fb700bfb6411c71d1ffe9806ff5acb91e data/c/tags/block/ores/voltanite.json
+3dc7a03e31c60bbaf050bf94172b6587b60cbd42 data/c/tags/block/storage_blocks.json
+eb92e574e3e2b7ac9ec2c2689f1bc9c25945838f data/c/tags/block/storage_blocks/lumesteel.json
+950daaf46853bad49aabc2405749009404c8a119 data/c/tags/block/storage_blocks/oblivium.json
+8d8a9845042c3b460e69477b7dd682579d1a01f6 data/c/tags/block/storage_blocks/thermion_alloy.json
+917a6e000d9b30179351e855670fa92707b0d68d data/c/tags/block/storage_blocks/voltalium.json
+c90e492c66746f9ad37d02bba94a98c58a919024 data/minecraft/tags/block/mineable/pickaxe.json
+84266d0d15129d0ad80bfb47c3bd73d5abe8d255 data/minecraft/tags/block/needs_diamond_tool.json
+599787ec172c34f004df9bf5f171029279b41765 data/minecraft/tags/block/needs_iron_tool.json
+f9afe3de693cc27cd44226640ca2704f928fae9b data/minecraft/tags/block/needs_stone_tool.json

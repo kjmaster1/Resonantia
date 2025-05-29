@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:storage_blocks/copper"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "l": {
+      "tag": "c:gems/lumen"
+    },
+    "m": {
+      "item": "rftoolsbase:machine_frame"
+    },
+    "o": {
+      "tag": "c:ender_pearls"
+    }
+  },
+  "pattern": [
+    "ioi",
+    "lml",
+    "RCR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resonantia:simple_resonant_machine_frame"
+  }
+}

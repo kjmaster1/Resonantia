@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "l": {
+      "tag": "c:gems/lumen"
+    },
+    "m": {
+      "item": "resonantia:simple_resonant_machine_frame"
+    }
+  },
+  "pattern": [
+    " l ",
+    " m ",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "resonantia:simple_resonant_energy_transmitter"
+  }
+}

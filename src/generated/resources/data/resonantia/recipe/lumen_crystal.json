@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "l": {
+      "tag": "c:dusts/lumenite"
+    },
+    "o": {
+      "tag": "c:ender_pearls"
+    }
+  },
+  "pattern": [
+    "lll",
+    "lol",
+    "lll"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resonantia:lumen_crystal"
+  }
+}

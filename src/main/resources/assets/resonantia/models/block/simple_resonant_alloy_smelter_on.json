@@ -1,0 +1,7 @@
+{
+  "parent": "rftoolsbase:block/rftoolsblock_glow",
+  "textures": {
+    "front": "resonantia:block/simple_resonant_smelter",
+    "frontglow":  "resonantia:block/simple_resonant_smelter_glow"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "resonantia:crushing",
+  "energy": 3600,
+  "experience": 0.6,
+  "input": {
+    "count": 1,
+    "tag": "c:gems/resonant_quartz"
+  },
+  "output": {
+    "count": 1,
+    "id": "resonantia:resonant_quartz_dust"
+  }
+}

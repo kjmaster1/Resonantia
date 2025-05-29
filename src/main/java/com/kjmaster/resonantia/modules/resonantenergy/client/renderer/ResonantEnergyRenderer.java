@@ -1,7 +1,7 @@
 package com.kjmaster.resonantia.modules.resonantenergy.client.renderer;
 
 import com.kjmaster.resonantia.resonance.client.ClientEnabledCache;
-import com.kjmaster.resonantia.tileentity.ResonatingMachineTE;
+import com.kjmaster.resonantia.tileentity.ModularResonatingMachineTE;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -12,14 +12,15 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 public class ResonantEnergyRenderer {
 
-    public static void render(ResonatingMachineTE te, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, ResourceLocation coreTexture) {
+    public static void render(ModularResonatingMachineTE te, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, ResourceLocation coreTexture, Vec3 translation) {
         poseStack.pushPose();
-        poseStack.translate(0.5, 1.0, 0.5);
+        poseStack.translate(translation.x, translation.y, translation.z);
 
         Level level = Minecraft.getInstance().level;
         if (level == null) return;
@@ -38,7 +39,6 @@ public class ResonantEnergyRenderer {
         VertexConsumer coreBuffer = bufferSource.getBuffer(RenderType.entityTranslucentEmissive(coreTexture));
         renderGlowingCube(poseStack, coreBuffer, combinedLight);
         poseStack.popPose();
-
         poseStack.popPose();
     }
 

@@ -1,0 +1,19 @@
+{
+  "type": "resonantia:alloy_smelting",
+  "energy": 4800,
+  "experience": 0.3,
+  "inputs": [
+    {
+      "count": 4,
+      "tag": "c:dusts/thermonite"
+    },
+    {
+      "count": 1,
+      "tag": "c:gems/resonant_quartz"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "resonantia:resonant_thermonite_quartz"
+  }
+}

@@ -1,6 +1,7 @@
 package com.kjmaster.resonantia.modules.resonantenergy.client.renderer;
 
 import com.kjmaster.resonantia.modules.resonantenergy.ResonantEnergyModule;
+import com.kjmaster.resonantia.modules.resonantenergy.blocks.receiver.ResonantEnergyReceiverTileEntity;
 import com.kjmaster.resonantia.modules.resonantenergy.blocks.transmitter.ResonantEnergyTransmitterTileEntity;
 import com.kjmaster.resonantia.resonance.client.ClientLinkBeamCache;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -49,7 +50,7 @@ public class ResonantEnergyTransmitterRenderer implements BlockEntityRenderer<Re
 
     @Override
     public void render(ResonantEnergyTransmitterTileEntity te, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay) {
-        ResonantEnergyRenderer.render(te, partialTicks, poseStack, bufferSource, combinedLight, CORE_TEXTURE);
+        ResonantEnergyRenderer.render(te, partialTicks, poseStack, bufferSource, combinedLight, CORE_TEXTURE, new Vec3(0.5, 1, 0.5));
         renderLinks(te, partialTicks, poseStack, bufferSource);
     }
 
@@ -57,7 +58,6 @@ public class ResonantEnergyTransmitterRenderer implements BlockEntityRenderer<Re
         Level level = Minecraft.getInstance().level;
         if (level == null) return;
         List<BlockPos> targets = ClientLinkBeamCache.getLinks(new GlobalPos(level.dimension(), te.getBlockPos()));
-        System.out.println(targets);
         if (targets.isEmpty()) return;
 
         poseStack.pushPose();
@@ -73,9 +73,14 @@ public class ResonantEnergyTransmitterRenderer implements BlockEntityRenderer<Re
         BlockPos tePos = te.getBlockPos();
 
         for (BlockPos targetPos : targets) {
+            Vec3 to;
+            if (level.getBlockEntity(targetPos) instanceof ResonantEnergyReceiverTileEntity) {
+                to = Vec3.atCenterOf(targetPos).subtract(new Vec3(tePos.getX(), tePos.getY(), tePos.getZ()));
+            } else {
+                to = Vec3.atCenterOf(targetPos).add(0, -0.5, 0).subtract(new Vec3(tePos.getX(), tePos.getY(), tePos.getZ()));
+            }
             MultiBufferSource.BufferSource immediate = Minecraft.getInstance().renderBuffers().bufferSource();
             VertexConsumer beamBuffer = immediate.getBuffer(RenderType.entityTranslucentEmissive(CORE_TEXTURE));
-            Vec3 to = Vec3.atCenterOf(targetPos).subtract(new Vec3(tePos.getX(), tePos.getY(), tePos.getZ()));
             renderBeam(
                     poseStack,
                     beamBuffer,
@@ -120,7 +125,8 @@ public class ResonantEnergyTransmitterRenderer implements BlockEntityRenderer<Re
             float y = (float) (start.y + direction.y * t * beamLength);
             float z = (float) (start.z + direction.z * t * beamLength);
 
-            float offset = (float) Math.sin(time + t * frequency * Math.PI * 2) * amplitude;
+            float envelope = (float) Math.sin(Math.PI * t); // 0 at ends, 1 at center
+            float offset = (float) Math.sin(time + t * frequency * Math.PI * 2) * amplitude * envelope;
             Vec3 center = new Vec3(x, y + offset, z);
 
             Vec3[] ring = new Vec3[circlePoints];

@@ -118,13 +118,12 @@ public class GuiResonanceTuner extends BaseScreen implements IKeyReceiver {
 
         List<String> tooltips = window.getTooltips();
         if (tooltips != null) {
-            int guiLeft = (this.width - this.xSize) / 2;
             int x = GuiTools.getRelativeX(this);
             int y = GuiTools.getRelativeY(this);
             // @todo check on 1.16
             List<FormattedText> properties = tooltips.stream().map(ComponentFactory::literal).collect(Collectors.toList());
             List<FormattedCharSequence> processors = Language.getInstance().getVisualOrder(properties);
-            graphics.renderTooltip(Minecraft.getInstance().font, processors, x - guiLeft, y);
+            graphics.renderTooltip(Minecraft.getInstance().font, processors, x, y);
         }
     }
 

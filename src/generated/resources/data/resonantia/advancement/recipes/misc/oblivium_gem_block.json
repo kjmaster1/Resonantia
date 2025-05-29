@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_oblivium_gem": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:gems/oblivium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "resonantia:oblivium_gem_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_oblivium_gem"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "resonantia:oblivium_gem_block"
+    ]
+  }
+}

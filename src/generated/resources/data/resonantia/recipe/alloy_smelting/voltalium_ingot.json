@@ -1,0 +1,19 @@
+{
+  "type": "resonantia:alloy_smelting",
+  "energy": 4800,
+  "experience": 0.3,
+  "inputs": [
+    {
+      "count": 4,
+      "tag": "c:dusts/voltanite"
+    },
+    {
+      "count": 1,
+      "tag": "c:ingots/iron"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "resonantia:voltalium_ingot"
+  }
+}

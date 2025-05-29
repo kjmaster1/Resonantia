@@ -5,6 +5,7 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class ResonantiaAnnotationTools {
@@ -36,8 +37,9 @@ public class ResonantiaAnnotationTools {
                 throw new RuntimeException(e);
             }
 
-            Function<? super ResonantiaTileEntity, Object> function;
-            function = (Function) instance;
+            BiFunction<? super ResonantiaTileEntity, Object, Object> function;
+
+            function = (BiFunction) instance;
 
             holder.caps.add(new ResonantiaAnnotationHolder.CapHolder(type.getCapability(), function, block));
         }

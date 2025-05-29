@@ -1,0 +1,7 @@
+{
+  "parent": "resonantia:block/machine/processing_machine_face",
+  "textures": {
+    "back": "resonantia:block/resonant_smelter/resonant_smelter_simple_back",
+    "front": "resonantia:block/resonant_smelter/resonant_smelter_simple_front"
+  }
+}

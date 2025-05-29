@@ -1,0 +1,6 @@
+{
+  "parent": "resonantia:block/machine/processing_machine_windows",
+  "textures": {
+    "window": "resonantia:block/machine/windows"
+  }
+}

@@ -1,6 +1,23 @@
 {
   "values": [
     "resonantia:simple_resonant_energy_transmitter",
-    "resonantia:simple_resonant_energy_receiver"
+    "resonantia:simple_resonant_energy_receiver",
+    "resonantia:simple_resonant_smelter",
+    "resonantia:simple_resonant_alloy_smelter",
+    "resonantia:simple_resonant_crusher",
+    "resonantia:simple_resonant_pump",
+    "resonantia:lumenite_ore",
+    "resonantia:deepslate_lumenite_ore",
+    "resonantia:lumesteel_block",
+    "resonantia:voltanite_ore",
+    "resonantia:deepslate_voltanite_ore",
+    "resonantia:voltalium_block",
+    "resonantia:thermonite_ore",
+    "resonantia:thermion_alloy_block",
+    "resonantia:resonant_quartz_ore",
+    "resonantia:oblivium_ore",
+    "resonantia:oblivium_gem_block",
+    "resonantia:keralium_ore",
+    "resonantia:simple_resonant_machine_frame"
   ]
 }

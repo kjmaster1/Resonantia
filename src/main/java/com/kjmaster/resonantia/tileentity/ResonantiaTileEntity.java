@@ -1,6 +1,5 @@
 package com.kjmaster.resonantia.tileentity;
 
-import mcjty.lib.tileentity.GenericTileEntity;
 import mcjty.lib.tileentity.TickingTileEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;

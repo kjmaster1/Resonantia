@@ -1,0 +1,8 @@
+{
+  "parent": "resonantia:block/machine/processing_machine_face_glow",
+  "textures": {
+    "back": "resonantia:block/resonant_alloy_smelter/resonant_alloy_smelter_simple_back",
+    "front": "resonantia:block/resonant_alloy_smelter/resonant_alloy_smelter_simple_front",
+    "front_glow": "resonantia:block/resonant_alloy_smelter/resonant_alloy_smelter_front_glow"
+  }
+}

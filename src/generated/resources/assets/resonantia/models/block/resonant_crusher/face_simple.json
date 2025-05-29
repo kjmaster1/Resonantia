@@ -1,0 +1,7 @@
+{
+  "parent": "resonantia:block/machine/processing_machine_face",
+  "textures": {
+    "back": "resonantia:block/resonant_crusher/resonant_crusher_simple_back",
+    "front": "resonantia:block/resonant_crusher/resonant_crusher_simple_front"
+  }
+}

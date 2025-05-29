@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "resonantia:thermion_alloy_nugget"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_thermion_alloy_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:ingots/thermion_alloy"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_thermion_alloy_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "resonantia:thermion_alloy_nugget"
+    ]
+  }
+}

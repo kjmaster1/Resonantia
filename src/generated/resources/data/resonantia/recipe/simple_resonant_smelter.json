@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "minecraft:furnace"
+    },
+    "l": {
+      "tag": "resonantia:capacitors/lumen"
+    },
+    "m": {
+      "item": "resonantia:simple_resonant_energy_receiver"
+    }
+  },
+  "pattern": [
+    "   ",
+    " m ",
+    "lfl"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resonantia:simple_resonant_smelter"
+  }
+}

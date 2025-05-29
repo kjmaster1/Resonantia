@@ -24,6 +24,7 @@ public class TunerModule implements IModule {
     public void initDatagen(DataGen dataGen, HolderLookup.Provider provider) {
         dataGen.add(
                 Dob.itemBuilder(RESONANCE_TUNER)
+                        .name("Resonance Tuner")
                         .generatedItem("item/resonance_tuner")
         );
     }

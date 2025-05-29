@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "v": {
+      "tag": "c:ingots/thermion_alloy"
+    }
+  },
+  "pattern": [
+    "vvv",
+    "vvv",
+    "vvv"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resonantia:thermion_alloy_ingot"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "resonantia:simple_resonant_smelter"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "simple_energy_receiver": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#resonantia:capacitors/lumen"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "simple_energy_receiver"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "resonantia:simple_resonant_smelter"
+    ]
+  }
+}

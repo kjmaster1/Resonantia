@@ -1,6 +1,7 @@
 {
   "values": [
     "resonantia:simple_resonant_energy_transmitter",
-    "resonantia:simple_resonant_energy_receiver"
+    "resonantia:simple_resonant_energy_receiver",
+    "resonantia:keralium_ore"
   ]
 }

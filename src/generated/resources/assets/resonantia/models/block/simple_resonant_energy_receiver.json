@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "rftoolsbase:block/base/machinebottom",
-    "side": "rftoolsbase:block/base/machineside",
-    "top": "rftoolsbase:block/base/machinetop"
-  }
-}

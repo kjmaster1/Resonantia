@@ -1,0 +1,13 @@
+{
+  "type": "resonantia:crushing",
+  "energy": 12000,
+  "experience": 1.8,
+  "input": {
+    "count": 1,
+    "tag": "c:gems/oblivium"
+  },
+  "output": {
+    "count": 1,
+    "id": "resonantia:oblivium_dust"
+  }
+}

@@ -5,7 +5,7 @@ import com.kjmaster.resonantia.modules.resonantenergy.data.ResonantMachineIndex;
 import com.kjmaster.resonantia.resonance.PacketLinkVisualization;
 import com.kjmaster.resonantia.resonance.PacketSyncEnabled;
 import com.kjmaster.resonantia.setup.ResonantiaMessages;
-import com.kjmaster.resonantia.tileentity.ResonatingMachineTE;
+import com.kjmaster.resonantia.tileentity.ModularResonatingMachineTE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -27,10 +27,10 @@ public class TransmitterChunkWatch {
         ServerPlayer player = event.getPlayer();
         ChunkPos watchedChunk = event.getPos();
 
-        for (ResonatingMachineTE te : getResonatorsInChunk(watchedChunk, player.serverLevel())) {
+        for (ModularResonatingMachineTE te : getResonatorsInChunk(watchedChunk, player.serverLevel())) {
             if (te instanceof ResonantEnergyTransmitterTileEntity) {
                 if (te.isMachineEnabled()) {
-                    List<BlockPos> links = te.findLinkedMachines(te.getBlockPos(), te.frequency.getFrequency(), te.frequency.getRadius(), te.frequency.getLinkTolerance());
+                    List<BlockPos> links = te.findLinkedMachines(te.getBlockPos(), te.frequencyHandler.getFrequency(), te.frequencyHandler.getRadius(), te.frequencyHandler.getLinkTolerance());
                     ResonantiaMessages.sendToPlayer(PacketLinkVisualization.create(te.getBlockPos(), links), player);
                 } else {
                     ResonantiaMessages.sendToPlayer(PacketLinkVisualization.create(te.getBlockPos(), List.of()), player);
@@ -40,14 +40,14 @@ public class TransmitterChunkWatch {
         }
     }
 
-    public static List<ResonatingMachineTE> getResonatorsInChunk(ChunkPos chunkPos, ServerLevel level) {
+    public static List<ModularResonatingMachineTE> getResonatorsInChunk(ChunkPos chunkPos, ServerLevel level) {
         Set<BlockPos> positions = ResonantMachineIndex.get(level, chunkPos);
-        List<ResonatingMachineTE> result = new ArrayList<>();
+        List<ModularResonatingMachineTE> result = new ArrayList<>();
 
         for (BlockPos pos : positions) {
             BlockEntity be = level.getBlockEntity(pos);
-            if (be instanceof ResonatingMachineTE resonatingMachineTE) {
-                result.add(resonatingMachineTE);
+            if (be instanceof ModularResonatingMachineTE modularResonatingMachineTE) {
+                result.add(modularResonatingMachineTE);
             }
         }
 

@@ -1,23 +1,15 @@
 package com.kjmaster.resonantia.modules.resonantenergy.client.gui;
 
+import com.kjmaster.resonantia.client.gui.GuiModularResonatingMachine;
 import com.kjmaster.resonantia.modules.resonantenergy.ResonantEnergyModule;
 import com.kjmaster.resonantia.modules.resonantenergy.blocks.transmitter.ResonantEnergyTransmitterTileEntity;
 import mcjty.lib.container.GenericContainer;
-import mcjty.lib.gui.GenericGuiContainer;
-import mcjty.lib.gui.Window;
-import mcjty.lib.gui.widgets.EnergyBar;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import org.jetbrains.annotations.NotNull;
 
-import static com.kjmaster.resonantia.Resonantia.MODID;
-
-public class GuiResonantEnergyTransmitter extends GenericGuiContainer<ResonantEnergyTransmitterTileEntity, GenericContainer> {
-
-    private EnergyBar energyBar;
+public class GuiResonantEnergyTransmitter extends GuiModularResonatingMachine<ResonantEnergyTransmitterTileEntity, GenericContainer> {
 
     public GuiResonantEnergyTransmitter(GenericContainer container, Inventory inventory, Component title) {
         super(container, inventory, title, ResonantEnergyModule.SIMPLE_RESONANT_ENERGY_TRANSMITTER.block().get().getManualEntry());
@@ -28,28 +20,12 @@ public class GuiResonantEnergyTransmitter extends GenericGuiContainer<ResonantEn
     }
 
     @Override
-    public void init() {
-        window = new Window(this, this.getBE(), ResourceLocation.fromNamespaceAndPath(MODID, "gui/resonant_energy_transmitter.gui"));
-        super.init();
-        initializeFields();
-    }
-
-    private void initializeFields() {
-        energyBar = window.findChild("energybar");
-        updateFields();
-    }
-
-    private void updateFields() {
-        if (window == null) {
-            return;
-        }
-
-        updateEnergyBar(energyBar);
+    protected Direction[] getItemDirections() {
+        return new Direction[]{Direction.DOWN, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
     }
 
     @Override
-    protected void renderBg(@NotNull GuiGraphics graphics, float partialTicks, int x, int y) {
-        updateFields();
-        drawWindow(graphics, partialTicks, x, y);
+    protected Direction[] getEnergyDirections() {
+        return new Direction[]{Direction.DOWN, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
     }
 }

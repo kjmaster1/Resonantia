@@ -3,41 +3,36 @@ package com.kjmaster.resonantia.modules.resonantenergy.blocks.transmitter;
 import com.kjmaster.resonantia.api.machine.IResonantMachine;
 import com.kjmaster.resonantia.api.machine.ResonantMachineRole;
 import com.kjmaster.resonantia.modules.resonantenergy.blocks.receiver.ResonantEnergyReceiverTileEntity;
-import com.kjmaster.resonantia.modules.resonantenergy.data.ResonantMachineIndex;
 import com.kjmaster.resonantia.resonance.PacketLinkVisualization;
 import com.kjmaster.resonantia.setup.ResonantiaMessages;
-import com.kjmaster.resonantia.tileentity.ResonatingMachineTE;
-import mcjty.lib.api.container.DefaultContainerProvider;
+import com.kjmaster.resonantia.tileentity.ILitOverride;
+import com.kjmaster.resonantia.tileentity.ModularResonatingMachineTE;
 import mcjty.lib.container.ContainerFactory;
 import mcjty.lib.container.GenericContainer;
 import mcjty.lib.container.GenericItemHandler;
 import mcjty.lib.container.SlotDefinition;
-import mcjty.lib.setup.Registration;
-import mcjty.lib.tileentity.BaseBEData;
-import mcjty.lib.tileentity.Cap;
-import mcjty.lib.tileentity.CapType;
 import mcjty.lib.varia.EnergyTools;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentMap;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.MenuProvider;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
+import static com.kjmaster.resonantia.Resonantia.MODID;
 import static com.kjmaster.resonantia.modules.resonantenergy.ResonantEnergyModule.CONTAINER_RESONANT_ENERGY_TRANSMITTER;
-import static mcjty.lib.api.container.DefaultContainerProvider.container;
-import static mcjty.lib.setup.Registration.BASE_BE_DATA;
 
-public class ResonantEnergyTransmitterTileEntity extends ResonatingMachineTE {
+public abstract class ResonantEnergyTransmitterTileEntity extends ModularResonatingMachineTE {
 
     public static final int SLOT_CHARGEITEM = 0;
 
@@ -45,25 +40,35 @@ public class ResonantEnergyTransmitterTileEntity extends ResonatingMachineTE {
             .slot(SlotDefinition.specific(EnergyTools::isEnergyItem), SLOT_CHARGEITEM, 82, 24)
             .playerSlots(10, 70));
 
-    private final GenericItemHandler items = GenericItemHandler.create(this, CONTAINER_FACTORY).itemValid(
-                    (slot, stack) -> EnergyTools.isEnergyItem(stack))
-            .build();
-
-    @Cap(type = CapType.ITEMS_AUTOMATION)
-    private static final Function<ResonantEnergyTransmitterTileEntity, GenericItemHandler> ITEM_CAP = tile -> tile.items;
-
-    @Cap(type = CapType.CONTAINER)
-    private static final Function<ResonantEnergyTransmitterTileEntity, MenuProvider> SCREEN_CAP = be -> new DefaultContainerProvider<GenericContainer>("Resonant Energy Transmitter")
-            .containerSupplier(container(CONTAINER_RESONANT_ENERGY_TRANSMITTER, CONTAINER_FACTORY, be))
-            .itemHandler(() -> be.items)
-            .energyHandler(() -> be.energyStorage)
-            .data(BASE_BE_DATA, BaseBEData.STREAM_CODEC, BaseBEData.CODEC)
-            .setupSync(be);
-
     private List<BlockPos> lastSentLinks = List.of();
 
     public ResonantEnergyTransmitterTileEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+    }
+
+    @Override
+    protected @Nullable GenericItemHandler getItemHandler() {
+        return GenericItemHandler.create(this, getContainerFactory()).build();
+    }
+
+    @Override
+    protected Lazy<ContainerFactory> getContainerFactory() {
+        return CONTAINER_FACTORY;
+    }
+
+    @Override
+    protected String getContainerTitle() {
+        return "Resonant Energy Transmitter";
+    }
+
+    @Override
+    protected Supplier<MenuType<GenericContainer>> getMenuType() {
+        return CONTAINER_RESONANT_ENERGY_TRANSMITTER;
+    }
+
+    @Override
+    public ResourceLocation getGui() {
+        return ResourceLocation.fromNamespaceAndPath(MODID, "textures/gui/resonant_energy_gui.png");
     }
 
     @Override
@@ -82,13 +87,21 @@ public class ResonantEnergyTransmitterTileEntity extends ResonatingMachineTE {
 
         if (energyStorage.getEnergyStored() == 0) return;
 
+        if (unstable) {
+            applyInstabilityEffects(linkedMachines);
+        }
+
+        transmitEnergy(linkedMachines);
+    }
+
+    private void transmitEnergy(List<BlockPos> linkedMachines) {
         int availableEnergy = energyStorage.getEnergyStored();
 
         List<IEnergyStorage> validTargets = linkedMachines.stream()
                 .map(level::getBlockEntity)
                 .filter((blockEntity) -> {
                     if (blockEntity instanceof IResonantMachine resonantMachine) {
-                        return resonantMachine.getMachineRole() != ResonantMachineRole.TRANSMITTER;
+                        return resonantMachine.getMachineRole().isCompatibleWith(getMachineRole());
                     }
                     return false;
                 })
@@ -113,27 +126,20 @@ public class ResonantEnergyTransmitterTileEntity extends ResonatingMachineTE {
         }
     }
 
-    @Override
-    protected void applyImplicitComponents(DataComponentInput input) {
-        super.applyImplicitComponents(input);
-        items.applyImplicitComponents(input.get(Registration.ITEM_INVENTORY));
-    }
+    private void applyInstabilityEffects(List<BlockPos> linkedMachines) {
+        int stored = energyStorage.getEnergyStored();
+        if (stored <= 0) return;
 
-    @Override
-    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
-        super.collectImplicitComponents(builder);
-        items.collectImplicitComponents(builder);
-    }
+        int lost = Math.min(stored, (int) (stored * 0.15));
+        energyStorage.consumeEnergy(lost);
 
-    @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
-        super.saveAdditional(tag, provider);
-        items.save(tag, "items", provider);
-    }
-
-    @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
-        super.loadAdditional(tag, provider);
-        items.load(tag, "items", provider);
+        if (level != null && level.random.nextFloat() < 0.1f) {
+            BlockPos pos = linkedMachines.isEmpty() ? worldPosition : linkedMachines.get(level.random.nextInt(linkedMachines.size()));
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof ILitOverride litOverride) {
+                litOverride.applyLitOverride(10);
+            }
+            ((ServerLevel) level).sendParticles(ParticleTypes.CRIT, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 6, 0.3, 0.3, 0.3, 0.01);
+        }
     }
 }

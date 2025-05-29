@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "resonantia:block/simple_resonant_machine_frame",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "resonantia:block/simple_resonant_machine_frame"
+    },
+    "facing=south": {
+      "model": "resonantia:block/simple_resonant_machine_frame",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "resonantia:block/simple_resonant_machine_frame",
+      "y": 270
+    }
+  }
+}

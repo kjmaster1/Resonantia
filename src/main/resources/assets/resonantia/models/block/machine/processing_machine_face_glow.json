@@ -1,0 +1,21 @@
+{
+  "parent": "block/block",
+  "render_type": "solid",
+  "ambientocclusion": false,
+  "elements": [
+    {   "from": [ 1, 1, 0 ],
+      "to": [ 15, 15, 1 ],
+      "faces": {
+        "north": { "texture": "#front"},
+        "south": { "texture": "#back"}
+      }
+    },
+    {   "from": [ 1, 1, 0 ],
+      "to": [ 15, 15, 1 ],
+      "shade": false,
+      "faces": {
+        "north": { "texture": "#front_glow"}
+      }
+    }
+  ]
+}

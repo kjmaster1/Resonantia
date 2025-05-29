@@ -1,0 +1,19 @@
+{
+  "type": "resonantia:alloy_smelting",
+  "energy": 3600,
+  "experience": 0.3,
+  "inputs": [
+    {
+      "count": 4,
+      "item": "resonantia:lumenite_dust"
+    },
+    {
+      "count": 1,
+      "tag": "c:ingots/iron"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "resonantia:lumesteel_ingot"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "resonantia:lumesteel_block"
+        }
+      ],
+      "name": "lumesteel_block",
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "resonantia:blocks/lumesteel_block"
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "resonantia:voltalium_ingot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_voltalium_nugget": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:nuggets/voltalium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_voltalium_nugget"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "resonantia:voltalium_ingot"
+    ]
+  }
+}

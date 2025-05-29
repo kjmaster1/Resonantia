@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
 
 public class ResonantEnergyReceiverRenderer implements BlockEntityRenderer<ResonantEnergyReceiverTileEntity> {
 
@@ -22,6 +23,6 @@ public class ResonantEnergyReceiverRenderer implements BlockEntityRenderer<Reson
 
     @Override
     public void render(ResonantEnergyReceiverTileEntity te, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay) {
-        ResonantEnergyRenderer.render(te, partialTicks, poseStack, bufferSource, combinedLight, CORE_TEXTURE);
+        ResonantEnergyRenderer.render(te, partialTicks, poseStack, bufferSource, combinedLight, CORE_TEXTURE, new Vec3(0.5, 1, 0.5));
     }
 }

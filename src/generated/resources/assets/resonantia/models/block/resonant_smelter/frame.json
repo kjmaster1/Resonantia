@@ -1,0 +1,7 @@
+{
+  "parent": "resonantia:block/machine/processing_machine_frame",
+  "textures": {
+    "frame": "resonantia:block/machine/windows",
+    "particle": "resonantia:block/resonant_smelter/resonant_smelter_simple_front"
+  }
+}

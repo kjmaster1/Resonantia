@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#resonantia:spawns_keralium",
+  "features": "resonantia:ore_keralium_overworld",
+  "step": "underground_ores"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "resonantia:simple_resonant_energy_transmitter"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "resonantia:simple_resonant_energy_receiver"
+  }
+}

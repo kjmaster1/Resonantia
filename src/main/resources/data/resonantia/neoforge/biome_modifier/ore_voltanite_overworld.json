@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_hot/overworld",
+  "features": "resonantia:ore_voltanite_overworld",
+  "step": "underground_ores"
+}

@@ -37,7 +37,7 @@ public record PacketUpdateResonantiaBEData(BlockPos pos, ResonantiaBEData resona
             Player player = ctx.player();
             Level world = player.getCommandSenderWorld();
             BlockEntity te = world.getBlockEntity(pos);
-            if (te instanceof ResonatingMachineTE) {
+            if (te instanceof ModularResonatingMachineTE) {
                 te.setData(RESONANTIA_BE_DATA, resonantiaBEData);
             }
         });

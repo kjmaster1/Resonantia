@@ -1,0 +1,36 @@
+{
+  "loader": "resonantia:reconfigurable",
+  "parent": "block/block",
+  "render_type": "minecraft:translucent",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#window"
+        },
+        "east": {
+          "texture": "#window"
+        },
+        "south": {
+          "texture": "#window"
+        },
+        "up": {
+          "texture": "#window"
+        },
+        "west": {
+          "texture": "#window"
+        }
+      },
+      "from": [
+        1,
+        1,
+        1
+      ],
+      "to": [
+        15,
+        15,
+        15
+      ]
+    }
+  ]
+}

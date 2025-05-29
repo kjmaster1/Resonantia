@@ -1,0 +1,19 @@
+{
+  "type": "resonantia:alloy_smelting",
+  "energy": 12000,
+  "experience": 1.8,
+  "inputs": [
+    {
+      "count": 4,
+      "tag": "resonantia:fragments/oblivium"
+    },
+    {
+      "count": 1,
+      "tag": "c:gems/diamond"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "resonantia:oblivium_gem"
+  }
+}

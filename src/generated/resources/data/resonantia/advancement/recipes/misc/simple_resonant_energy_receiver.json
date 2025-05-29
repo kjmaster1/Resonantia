@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "resonantia:simple_resonant_energy_receiver"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "simple_resonant_energy_transmitter": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resonantia:simple_resonant_energy_transmitter"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "simple_resonant_energy_transmitter"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "resonantia:simple_resonant_energy_receiver"
+    ]
+  }
+}
