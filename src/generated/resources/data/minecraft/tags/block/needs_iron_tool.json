@@ -1,5 +1,6 @@
 {
   "values": [
+    "resonantia:simple_resonant_stabilizer",
     "resonantia:simple_resonant_smelter",
     "resonantia:simple_resonant_alloy_smelter",
     "resonantia:simple_resonant_crusher",

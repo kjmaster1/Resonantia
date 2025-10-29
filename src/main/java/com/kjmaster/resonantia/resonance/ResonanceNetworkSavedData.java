@@ -216,6 +216,7 @@ public class ResonanceNetworkSavedData extends SavedData {
                 && cache.frequency == frequency
                 && cache.tolerance == tolerance
                 && cache.radius == radius
+                && cache.testAtPos.equals(testAtPos)
                 && !cache.linked.isEmpty()) {
             return List.copyOf(cache.linked);
         }
@@ -237,7 +238,7 @@ public class ResonanceNetworkSavedData extends SavedData {
             }
         }
 
-        linkCache.put(origin, new CachedLinks(frequency, tolerance, radius, results, gameTime));
+        linkCache.put(origin, new CachedLinks(frequency, tolerance, radius, results, gameTime, testAtPos));
 
         return List.copyOf(results);
     }
@@ -270,13 +271,15 @@ public class ResonanceNetworkSavedData extends SavedData {
         final int radius;
         public final Set<BlockPos> linked;
         final long lastUpdateTick;
+        final Predicate<BlockPos> testAtPos;
 
-        CachedLinks(int frequency, int tolerance, int radius, Set<BlockPos> linked, long tick) {
+        CachedLinks(int frequency, int tolerance, int radius, Set<BlockPos> linked, long tick, Predicate<BlockPos> testAtPos) {
             this.frequency = frequency;
             this.tolerance = tolerance;
             this.radius = radius;
             this.linked = linked;
             this.lastUpdateTick = tick;
+            this.testAtPos = testAtPos;
         }
     }
 }

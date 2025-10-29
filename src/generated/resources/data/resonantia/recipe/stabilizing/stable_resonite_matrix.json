@@ -1,0 +1,8 @@
+{
+  "type": "resonantia:stabilizing",
+  "energy": 120000,
+  "input": {
+    "count": 1,
+    "item": "resonantia:stable_resonite_matrix"
+  }
+}

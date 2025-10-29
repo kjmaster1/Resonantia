@@ -3,6 +3,7 @@ package com.kjmaster.resonantia.modules.lumen;
 import com.kjmaster.resonantia.Resonantia;
 import com.kjmaster.resonantia.modules.lumen.blocks.LumeniteOreBlock;
 import com.kjmaster.resonantia.modules.smelter.crafting.AlloyRecipeBuilder;
+import com.kjmaster.resonantia.modules.stabilizer.crafting.StabilizingRecipeBuilder;
 import com.kjmaster.resonantia.setup.Registration;
 import mcjty.lib.datagen.DataGen;
 import mcjty.lib.datagen.Dob;
@@ -58,6 +59,7 @@ public class LumenModule implements IModule {
     public static final DeferredItem<Item> LUMESTEEL_BLOCK_ITEM = ITEMS.register("lumesteel_block", tab(() -> new BlockItem(LUMESTEEL_BLOCK.get(), Registration.createStandardProperties())));
 
     public static final DeferredItem<Item> RESONITE_BLEND = ITEMS.register("resonite_blend", tab(LumenModule::createItem64));
+    public static final DeferredItem<Item> STABLE_RESONITE_MATRIX = ITEMS.register("stable_resonite_matrix", tab(LumenModule::createItem64));
 
     public static final TagKey<Block> LUMENITE_ORE_BLOCK_TAG = TagTools.createBlockTagKey(ResourceLocation.fromNamespaceAndPath("c", "ores/lumenite"));
     public static final TagKey<Item> LUMENITE_ORE_ITEM_TAG = TagTools.createItemTagKey(ResourceLocation.fromNamespaceAndPath("c", "ores/lumenite"));
@@ -161,6 +163,14 @@ public class LumenModule implements IModule {
                             AlloyRecipeBuilder.build(new ItemStack(RESONITE_BLEND.get()),
                                     List.of(SizedIngredient.of(RESONANT_QUARTZ_DUST_ITEM_TAG, 1), SizedIngredient.of(LUMENITE_DUST_ITEM_TAG, 1)),
                                     4800, 0.3f, recipeOutput);
+                        }),
+                Dob.itemBuilder(STABLE_RESONITE_MATRIX)
+                        .itemTags(List.of(Registration.STABILIZERS_ITEM_TAG))
+                        .generatedItem("item/stable_resonite_matrix")
+                        .name("Stable Resonite Matrix")
+                        .recipeConsumer(() -> (recipeOutput) -> {
+                            StabilizingRecipeBuilder.build("stable_resonite_matrix", SizedIngredient.of(STABLE_RESONITE_MATRIX, 1),
+                                    120000, recipeOutput);
                         })
         );
     }

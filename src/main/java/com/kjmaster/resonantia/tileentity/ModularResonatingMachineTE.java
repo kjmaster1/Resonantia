@@ -16,6 +16,7 @@ import com.kjmaster.resonantia.capabilities.item.ItemModule;
 import com.kjmaster.resonantia.data.Mode;
 import com.kjmaster.resonantia.modules.resonantenergy.blocks.transmitter.ResonantEnergyTransmitterTileEntity;
 import com.kjmaster.resonantia.modules.resonantenergy.data.ResonantMachineIndex;
+import com.kjmaster.resonantia.modules.stabilizer.blocks.ResonantStabilizerTE;
 import com.kjmaster.resonantia.resonance.PacketLinkVisualization;
 import com.kjmaster.resonantia.resonance.PacketSyncEnabled;
 import com.kjmaster.resonantia.resonance.ResonanceNetworkSavedData;
@@ -47,6 +48,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.ChunkPos;
@@ -175,6 +177,46 @@ public abstract class ModularResonatingMachineTE extends ResonantiaTileEntity im
         return true;
     }
 
+    @Override
+    public int getDriftInterval() {
+        return 600;
+    }
+
+    @Override
+    public int getLinkTolerance() {
+        return 8;
+    }
+
+    @Override
+    public int getDestabilizationTolerance() {
+        return 4;
+    }
+
+    @Override
+    public int calculateDrift(DriftContext driftContext) {
+        ServerLevel level = driftContext.level();
+        BlockPos pos = driftContext.pos();
+        RandomSource rand = level.getRandom();
+        float stabilizationFactor = driftContext.stabilizationFactor();
+
+        if (stabilizationFactor > 0) {
+            if (rand.nextFloat() < stabilizationFactor) return 0;
+        }
+
+        int baseDrift = rand.nextBoolean() ? 1 : -1;
+
+        if (pos.getY() > 100) {
+            baseDrift += rand.nextBoolean() ? baseDrift : 0;
+        }
+
+        return baseDrift;
+    }
+
+    @Override
+    public int getRadius() {
+        return 8;
+    }
+
     // Tick
 
     @Override
@@ -209,8 +251,23 @@ public abstract class ModularResonatingMachineTE extends ResonantiaTileEntity im
 
         ServerLevel serverLevel = (ServerLevel) level;
 
-        if (serverLevel.getGameTime() % this.frequencyHandler.getDriftInterval() == 0) {
-            performDrift(serverLevel, this.frequencyHandler, getBlockPos());
+        if (!(this instanceof ResonantStabilizerTE)) {
+            List<BlockPos> linkedStabilizers = findLinkedStabilizers(getBlockPos(), this.frequencyHandler.getFrequency(), this.frequencyHandler.getRadius(), this.frequencyHandler.getLinkTolerance());
+
+            float stabilizationFactor = 0;
+
+            if (!linkedStabilizers.isEmpty()) {
+                for (BlockPos pos : linkedStabilizers) {
+                    ResonantStabilizerTE te = (ResonantStabilizerTE) level.getBlockEntity(pos);
+                    if (te.isStabilizing() && te.getStabilizationFactor() > stabilizationFactor) {
+                        stabilizationFactor = te.getStabilizationFactor();
+                    }
+                }
+            }
+
+            if (serverLevel.getGameTime() % this.frequencyHandler.getDriftInterval() == 0) {
+                performDrift(serverLevel, this.frequencyHandler, getBlockPos(), stabilizationFactor);
+            }
         }
 
         if (linkedMachines.isEmpty()) {
@@ -223,9 +280,7 @@ public abstract class ModularResonatingMachineTE extends ResonantiaTileEntity im
             serverLevel.sendParticles(ParticleTypes.SMOKE, getBlockPos().getX() + 0.5, getBlockPos().getY() + 1.0, getBlockPos().getZ() + 0.5, 2, 0.2, 0.2, 0.2, 0.01);
         }
 
-        if (getMachineRole() != ResonantMachineRole.PASSIVE) {
-            performMachineOperations(linkedMachines, unstable);
-        }
+        performMachineOperations(linkedMachines, unstable);
     }
 
     // Instability
@@ -252,8 +307,8 @@ public abstract class ModularResonatingMachineTE extends ResonantiaTileEntity im
 
     // Drift
 
-    private void performDrift(ServerLevel level, IFrequency frequencyCap, BlockPos pos) {
-        int drift = frequencyCap.calculateDrift(new DriftContext(level, pos));
+    private void performDrift(ServerLevel level, IFrequency frequencyCap, BlockPos pos, float stabilizationFactor) {
+        int drift = frequencyCap.calculateDrift(new DriftContext(level, pos, stabilizationFactor));
         if (drift != 0) {
             int newFrequency = frequencyCap.getFrequency() + drift;
             frequencyCap.setFrequency(newFrequency);
@@ -269,6 +324,19 @@ public abstract class ModularResonatingMachineTE extends ResonantiaTileEntity im
             if (!level.hasChunkAt(p)) return false;
             BlockEntity be = serverLevel.getBlockEntity(p);
             return be instanceof ModularResonatingMachineTE te && te.isMachineEnabled() && getMachineRole().isCompatibleWith(te.getMachineRole());
+        };
+        return ResonanceNetworkSavedData.get((ServerLevel) level).findLinkedMachines((ServerLevel) level, origin, frequency, radius, tolerance, activeTest);
+    }
+
+    // Linked Stabilizers
+
+    public List<BlockPos> findLinkedStabilizers(BlockPos origin, int frequency, int radius, int tolerance) {
+        if (level == null || level.isClientSide()) return Collections.emptyList();
+        Predicate<BlockPos> activeTest = p -> {
+            if (!(level instanceof ServerLevel serverLevel)) return false;
+            if (!level.hasChunkAt(p)) return false;
+            BlockEntity be = serverLevel.getBlockEntity(p);
+            return be instanceof ResonantStabilizerTE te && te.isMachineEnabled();
         };
         return ResonanceNetworkSavedData.get((ServerLevel) level).findLinkedMachines((ServerLevel) level, origin, frequency, radius, tolerance, activeTest);
     }
@@ -535,7 +603,7 @@ public abstract class ModularResonatingMachineTE extends ResonantiaTileEntity im
 
     @NotNull
     protected IFrequency getFrequencyHandler() {
-        return new DefaultFrequency(this);
+        return new DefaultFrequency(this, this);
     }
 
     @NotNull

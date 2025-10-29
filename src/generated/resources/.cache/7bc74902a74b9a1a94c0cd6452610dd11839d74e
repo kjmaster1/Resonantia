@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-21T15:40:21.3259176	Tags for minecraft:block mod id resonantia
+// 1.21.1	2025-05-30T08:07:37.2962119	Tags for minecraft:block mod id resonantia
 7e6328f9d580db548453ae9298a21fc686ef2ea2 data/c/tags/block/ores.json
 35a02a47ff8db8834359c6a0834f77e679e1be1d data/c/tags/block/ores/keralium.json
 95911f179be122940efcd8bda06eb5c226313c5f data/c/tags/block/ores/lumenite.json
@@ -11,7 +11,7 @@ eb92e574e3e2b7ac9ec2c2689f1bc9c25945838f data/c/tags/block/storage_blocks/lumest
 950daaf46853bad49aabc2405749009404c8a119 data/c/tags/block/storage_blocks/oblivium.json
 8d8a9845042c3b460e69477b7dd682579d1a01f6 data/c/tags/block/storage_blocks/thermion_alloy.json
 917a6e000d9b30179351e855670fa92707b0d68d data/c/tags/block/storage_blocks/voltalium.json
-c90e492c66746f9ad37d02bba94a98c58a919024 data/minecraft/tags/block/mineable/pickaxe.json
+8cc3035b6c38763dba9d02c4a40e578a19f35047 data/minecraft/tags/block/mineable/pickaxe.json
 84266d0d15129d0ad80bfb47c3bd73d5abe8d255 data/minecraft/tags/block/needs_diamond_tool.json
-599787ec172c34f004df9bf5f171029279b41765 data/minecraft/tags/block/needs_iron_tool.json
+5242ab616cad2c8ee88c1fb23e04e55ab9b9f760 data/minecraft/tags/block/needs_iron_tool.json
 f9afe3de693cc27cd44226640ca2704f928fae9b data/minecraft/tags/block/needs_stone_tool.json

@@ -75,6 +75,7 @@ public class Registration {
     public static final TagKey<Item> GLOBULES_ITEM_TAG;
     public static final TagKey<Item> CAPACITORS_ITEM_TAG;
     public static final TagKey<Item> FRAGMENTS_ITEM_TAG;
+    public static final TagKey<Item> STABILIZERS_ITEM_TAG;
 
     public static final ModelProperty<Mode> ENERGY_NORTH = new ModelProperty<>();
     public static final ModelProperty<Mode> ENERGY_SOUTH = new ModelProperty<>();
@@ -157,5 +158,6 @@ public class Registration {
         GLOBULES_ITEM_TAG = TagTools.createItemTagKey(ResourceLocation.fromNamespaceAndPath("resonantia", "globules"));
         CAPACITORS_ITEM_TAG = TagTools.createItemTagKey(ResourceLocation.fromNamespaceAndPath("resonantia", "capacitors"));
         FRAGMENTS_ITEM_TAG = TagTools.createItemTagKey(ResourceLocation.fromNamespaceAndPath("resonantia", "fragments"));
+        STABILIZERS_ITEM_TAG = TagTools.createItemTagKey(ResourceLocation.fromNamespaceAndPath("resonantia", "stabilizers"));
     }
 }

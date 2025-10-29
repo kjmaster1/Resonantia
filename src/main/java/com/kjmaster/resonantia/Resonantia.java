@@ -9,6 +9,7 @@ import com.kjmaster.resonantia.modules.resonantenergy.ResonantEnergyModule;
 import com.kjmaster.resonantia.modules.resonantquartz.ResonantQuartzModule;
 import com.kjmaster.resonantia.modules.simple.SimpleModule;
 import com.kjmaster.resonantia.modules.smelter.SmelterModule;
+import com.kjmaster.resonantia.modules.stabilizer.StabilizerModule;
 import com.kjmaster.resonantia.modules.thermon.ThermonModule;
 import com.kjmaster.resonantia.modules.tuner.TunerModule;
 import com.kjmaster.resonantia.modules.voltan.VoltanModule;
@@ -79,6 +80,7 @@ public class Resonantia {
     private void setupModules(IEventBus bus) {
         modules.register(new TunerModule());
         modules.register(new ResonantEnergyModule(bus));
+        modules.register(new StabilizerModule(bus));
         modules.register(new SmelterModule(bus));
         modules.register(new CrusherModule(bus));
         modules.register(new PumpModule(bus));

@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-19T01:03:22.8476259	Tags for minecraft:item mod id resonantia
+// 1.21.1	2025-05-30T08:07:37.2908995	Tags for minecraft:item mod id resonantia
 bf476618292059b10b5557c8629b5f3ca8983696 data/c/tags/item/dusts.json
 8664b7bf763f638f9fc98e71c83199fd54e1768e data/c/tags/item/dusts/lumenite.json
 7c798fc785c451301a0f0daf69887095da26223a data/c/tags/item/dusts/oblivium.json
@@ -37,3 +37,4 @@ fc69a677aac523c5e808a84ea7c588ad62bbca69 data/resonantia/tags/item/fragments.jso
 fc69a677aac523c5e808a84ea7c588ad62bbca69 data/resonantia/tags/item/fragments/oblivium.json
 7a0cd02074415119c64ee7bdeef412a90415f78a data/resonantia/tags/item/globules.json
 7a0cd02074415119c64ee7bdeef412a90415f78a data/resonantia/tags/item/globules/keralium.json
+cac42ed8ace34807a35a9bc33ce142a02f119b5a data/resonantia/tags/item/stabilizers.json

@@ -1,7 +1,9 @@
 package com.kjmaster.resonantia.api.frequency;
 
+import com.kjmaster.resonantia.api.machine.IResonantMachine;
 import com.kjmaster.resonantia.resonance.ResonanceNetworkSavedData;
 import com.kjmaster.resonantia.setup.Registration;
+import com.kjmaster.resonantia.tileentity.ModularResonatingMachineTE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
@@ -11,10 +13,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class DefaultFrequency implements IFrequency {
     private final BlockEntity owner;
+    private final IResonantMachine machine;
     private int frequency = 0;
 
-    public DefaultFrequency(BlockEntity owner) {
+    public DefaultFrequency(ModularResonatingMachineTE owner, IResonantMachine machine) {
         this.owner = owner;
+        this.machine = machine;
     }
 
     public void applyImplicitComponents(ItemFrequency frequency) {
@@ -55,38 +59,27 @@ public class DefaultFrequency implements IFrequency {
 
     @Override
     public int getDriftInterval() {
-        return 600;
+        return this.machine.getDriftInterval();
     }
 
     @Override
     public int getLinkTolerance() {
-        return 8;
+        return this.machine.getLinkTolerance();
     }
 
     @Override
     public int getDestabilizationTolerance() {
-        return 4;
+        return this.machine.getDestabilizationTolerance();
     }
 
     @Override
     public int getRadius() {
-        return 8;
+        return this.machine.getRadius();
     }
 
     @Override
     public int calculateDrift(DriftContext driftContext) {
-
-        ServerLevel level = driftContext.level();
-        BlockPos pos = driftContext.pos();
-        RandomSource rand = level.getRandom();
-
-        int baseDrift = rand.nextInt(3) - 1; // -1, 0, +1 drift
-
-        if (pos.getY() > 100) {
-            baseDrift += rand.nextBoolean() ? 1 : 0;
-        }
-
-        return baseDrift;
+        return this.machine.calculateDrift(driftContext);
     }
 
     public void save(CompoundTag tag, String tagName) {

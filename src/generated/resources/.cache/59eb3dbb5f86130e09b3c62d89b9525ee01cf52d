@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-26T23:22:31.7921832	Loot Tables
+// 1.21.1	2025-05-30T08:07:37.2928975	Loot Tables
 4a2a3d237eaf10dd586d7629658747fc8dcf5a78 data/resonantia/loot_table/blocks/deepslate_lumenite_ore.json
 bbe3a5ef2a944207f5d342d68631d8879cdc3493 data/resonantia/loot_table/blocks/deepslate_voltanite_ore.json
 f18f0fba79adbb6991baa100d8c638b89f874222 data/resonantia/loot_table/blocks/keralium_ore.json
@@ -14,6 +14,7 @@ a1ecf50696b1dc88030fd8da6e28e017f041dd7a data/resonantia/loot_table/blocks/obliv
 44f7917bd0df66133625a70c0b9a14ae6ad552cf data/resonantia/loot_table/blocks/simple_resonant_machine_frame.json
 c5b716ae02df8c99056793506bfd783c70c03c26 data/resonantia/loot_table/blocks/simple_resonant_pump.json
 a4c8bb4ed3272e4993f00ad7cc4e504d596a939f data/resonantia/loot_table/blocks/simple_resonant_smelter.json
+d067f9070dc5bc3760697b53ec4cab00735e0fce data/resonantia/loot_table/blocks/simple_resonant_stabilizer.json
 6b0f1812c58ec89a918576942ac761c07c926011 data/resonantia/loot_table/blocks/thermion_alloy_block.json
 8e6dbc7c1b2f8d77160e4a9d17bb02dbaf46a325 data/resonantia/loot_table/blocks/thermonite_ore.json
 3c952e968ff06874008520d6d49a7de82e011f02 data/resonantia/loot_table/blocks/voltalium_block.json

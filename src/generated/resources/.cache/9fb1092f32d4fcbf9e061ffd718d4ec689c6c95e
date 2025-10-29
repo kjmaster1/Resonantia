@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-21T15:21:59.9775193	Recipes
+// 1.21.1	2025-05-30T08:07:37.2938975	Recipes
 f52aa5303969bf4a654acc700b4caee47ea438a2 data/resonantia/advancement/recipes/misc/lumen_capacitor.json
 3394f285c90c2992cc36e0a788c77c47141d8a58 data/resonantia/advancement/recipes/misc/lumen_crystal.json
 118b1013647cacd32d9df2c0a9337127dd7e926e data/resonantia/advancement/recipes/misc/lumesteel_block.json
@@ -35,6 +35,7 @@ f189b99d4cba6d7d11a615c7ba15f6ded93d9f2e data/resonantia/recipe/simple_resonant_
 87d7323d0528ac7aeaa1d9bbaaf2fd8c154dfd8a data/resonantia/recipe/simple_resonant_energy_transmitter_shapeless.json
 7996b6c15d11dbc84e38f8eb80354f074d67b0a3 data/resonantia/recipe/simple_resonant_machine_frame.json
 398c479cb42e486a65e95a1998ba827f42992086 data/resonantia/recipe/simple_resonant_smelter.json
+407761a039315cc61a7699847aad18acd3dc2cdc data/resonantia/recipe/stabilizing/stable_resonite_matrix.json
 3faac400dd17208d941bdfbf24cf6c0361a1fc37 data/resonantia/recipe/thermion_alloy_block.json
 ac9356de7b1d68745cd6a2bb4e8e92dc0af2e738 data/resonantia/recipe/thermion_alloy_ingot.json
 077b4fafd65a4ce40894625b8a3bcef804358446 data/resonantia/recipe/thermion_alloy_nugget.json

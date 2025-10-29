@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-21T15:40:21.3249172	Item Models: resonantia
+// 1.21.1	2025-05-30T08:07:37.2952079	Item Models: resonantia
 bf39ad18aa996ec6eeffe2ad7e522372e99e037e assets/resonantia/models/item/deepslate_lumenite_ore.json
 99d6ce93e1c0cf3708052d6a94a705b33409de52 assets/resonantia/models/item/deepslate_voltanite_ore.json
 45abbdf222559a25fb0ee155925a944f7b25403b assets/resonantia/models/item/keralium_globule.json
@@ -28,6 +28,8 @@ dee07de1db0eb3abcc6caf6a92151e49b3687173 assets/resonantia/models/item/simple_re
 c3131e67e1f1e2426ea3fca68ea6c0c9343d3197 assets/resonantia/models/item/simple_resonant_machine_frame.json
 578c4943ba3b392b442551c2fbd14cefffec7a21 assets/resonantia/models/item/simple_resonant_pump.json
 8fd1af2f43890f4d662132100d3708bf28872c17 assets/resonantia/models/item/simple_resonant_smelter.json
+6347d772889e4bbd1d3c8ef4b9a5de110814732d assets/resonantia/models/item/simple_resonant_stabilizer.json
+7fe78f4a7996596cce3692cd20b06d7978d59f16 assets/resonantia/models/item/stable_resonite_matrix.json
 95b720db583853eb58adad9d70f69dccc0576715 assets/resonantia/models/item/thermion_alloy_block.json
 c8e090a83fef31bdc12b22d7e0269409a0b5264e assets/resonantia/models/item/thermion_alloy_ingot.json
 ac111b5196e209131378dbb6b44c1f3b93e41c2a assets/resonantia/models/item/thermion_alloy_nugget.json
